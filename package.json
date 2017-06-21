@@ -8,8 +8,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "app": "electron ."
   },
+  "main": "electron-main.js",
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.0.0",
@@ -22,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
+    "electron": "^1.6.11",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
