@@ -1,25 +1,24 @@
 <div class="window">
 
-  <div class="tab-group">
+  <div *ngIf="openDiagrams.length > 0" class="tab-group">
     <div class="tab-item tab-item-fixed active">
       <span class="icon icon-archive"></span>
     </div>
-    <div class="tab-item">
-      <span class="icon icon-cancel icon-close-tab"></span>
-      Diagram 1
-    </div>
-    <div class="tab-item">
-      <span class="icon icon-cancel icon-close-tab"></span>
-      Diagram 2
-    </div>
-    <div class="tab-item">
-      <span class="icon icon-cancel icon-close-tab"></span>
-      Diagram 3
+    <div *ngFor="let diagram of openDiagrams" class="tab-item">
+      <span class="icon icon-cancel icon-close-tab" (click)="close(diagram)"></span>
+      {{diagram}}
     </div>
   </div>
 
   <div class="tab-content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore labore ad, necessitatibus dolorum dolores veritatis quidem. Quia provident similique quas molestiae neque, dignissimos eum ducimus, magni deserunt dolorum optio et!</p>
+    <ul class="list-group">
+      <li class="list-group-header">
+        <strong>Diagrams List</strong>
+      </li>
+      <li *ngFor="let diagram of allDiagrams" class="list-group-item">
+        <a href="#" (click)="open(diagram)"><strong>{{diagram}}</strong></a>
+      </li>
+    </ul>
   </div>
 
 </div>
