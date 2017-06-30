@@ -21,10 +21,13 @@ function createWindow() {
       protocol: 'http:',
       slashes: true,
     }));
+    win.webContents.openDevTools({ detach: true });
   }
 
   return win;
 }
+
+app.commandLine.appendSwitch('disable-http-cache');
 
 app.on('ready', function () {
   let win = createWindow();
