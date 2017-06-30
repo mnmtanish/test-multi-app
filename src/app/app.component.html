@@ -1,24 +1,31 @@
 <div class="window">
 
   <div *ngIf="openDiagrams.length > 0" class="tab-group">
-    <div class="tab-item tab-item-fixed active">
+    <div class="tab-item tab-item-fixed" [class.active]="!selectedTab" (click)="select(null)">
       <span class="icon icon-archive"></span>
     </div>
-    <div *ngFor="let diagram of openDiagrams" class="tab-item">
+    <div *ngFor="let diagram of openDiagrams" class="tab-item" [class.active]="diagram === selectedTab" (click)="select(diagram)">
       <span class="icon icon-cancel icon-close-tab" (click)="close(diagram)"></span>
       {{diagram}}
     </div>
   </div>
 
-  <div class="tab-content">
-    <ul class="list-group">
-      <li class="list-group-header">
-        <strong>Diagrams List</strong>
-      </li>
-      <li *ngFor="let diagram of allDiagrams" class="list-group-item">
-        <a href="#" (click)="open(diagram)"><strong>{{diagram}}</strong></a>
-      </li>
-    </ul>
+  <ul *ngIf="!selectedTab" class="list-group">
+    <li class="list-group-header">
+      <strong>Diagrams List</strong>
+    </li>
+    <li *ngFor="let diagram of allDiagrams" class="list-group-item">
+      <a [href]="getUrl(diagram)"><strong>{{diagram}} (link)</strong></a>
+    </li>
+    <li *ngFor="let diagram of allDiagrams" class="list-group-item">
+      <a href="#" (click)="open(diagram)"><strong>{{diagram}} (iframe)</strong></a>
+    </li>
+  </ul>
+
+  <div class="tab-content" [class.hidden]="!selectedTab">
+    <div class="diagram-content" *ngFor="let diagram of openDiagrams" [class.hidden]="diagram !== selectedTab">
+      <iframe class="diagram-frame" [src]="getUrl(diagram)" frameborder="0"></iframe>
+    </div>
   </div>
 
 </div>
